@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REVUE CHORÉGRAPHIQUE — Морис Бежар: Архитектор тотального театра</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0b0a0c;
+      --bg-secondary: #131115;
+      --bg-card: #18151b;
+      --bg-elevated: #211d25;
+      --text-primary: #f3ede2;
+      --text-secondary: #bdb4a6;
+      --text-muted: #857c70;
+      --accent-gold: #c9a363;
+      --accent-gold-soft: rgba(201, 163, 99, 0.16);
+      --accent-crimson: #b81d24;
+      --accent-crimson-glow: rgba(184, 29, 36, 0.35);
+      --border-hairline: rgba(201, 163, 99, 0.24);
+      --border-subtle: rgba(243, 237, 226, 0.1);
+      --shadow-editorial: 0 24px 60px rgba(0, 0, 0, 0.65);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-masthead: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    [data-theme="paper"] {
+      --bg-primary: #f5f0e6;
+      --bg-secondary: #ebe4d5;
+      --bg-card: #faf7f0;
+      --bg-elevated: #e3dac8;
+      --text-primary: #181512;
+      --text-secondary: #463f37;
+      --text-muted: #786f64;
+      --accent-gold: #9a7234;
+      --accent-gold-soft: rgba(154, 114, 52, 0.12);
+      --accent-crimson: #a6171e;
+      --accent-crimson-glow: rgba(166, 23, 30, 0.2);
+      --border-hairline: rgba(154, 114, 52, 0.32);
+      --border-subtle: rgba(24, 21, 18, 0.12);
+      --shadow-editorial: 0 20px 50px rgba(24, 21, 18, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background-color 0.45s ease, color 0.45s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.032;
+      background-image: radial-gradient(var(--text-primary) 0.75px, transparent 0.75px);
+      background-size: 18px 18px;
+    }
+
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-crimson), var(--accent-gold));
+      z-index: 1001;
+      transition: width 0.1s linear;
+    }
+
+    /* Колонтитул журнала */
+    .magazine-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .header-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand-mark {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-title {
+      font-family: var(--font-masthead);
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 0.66rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent-crimson);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold-soft);
+    }
+
+    /* Стартовая обложка с портретом pic1 */
+    .cover-spread {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 28px 80px;
+      border-bottom: 1px solid var(--border-hairline);
+      position: relative;
+    }
+
+    .cover-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 42px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 0.74rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .issue-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-crimson);
+      margin-bottom: 18px;
+    }
+
+    .issue-kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent-crimson);
+    }
+
+    .cover-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3.1rem, 6.2vw, 5.6rem);
+      font-weight: 600;
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .cover-headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-gold);
+      display: block;
+      font-size: clamp(2.1rem, 3.8vw, 3.4rem);
+      margin-top: 8px;
+    }
+
+    .cover-dates {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 26px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cover-lead {
+      font-size: 1.04rem;
+      color: var(--text-secondary);
+      margin-bottom: 34px;
+      max-width: 62ch;
+    }
+
+    .cover-lead::first-letter {
+      font-family: var(--font-display);
+      float: left;
+      font-size: 4.1rem;
+      line-height: 0.82;
+      padding-right: 14px;
+      padding-top: 4px;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .cover-toc {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .toc-item {
+      text-decoration: none;
+      color: var(--text-primary);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-secondary);
+      padding: 14px 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .toc-item:hover {
+      border-color: var(--accent-crimson);
+      transform: translateY(-2px);
+      background: var(--bg-card);
+    }
+
+    .toc-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.35rem;
+      color: var(--accent-crimson);
+      font-weight: 700;
+    }
+
+    .toc-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Портретный планшет pic1 */
+    .portrait-plate {
+      position: relative;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      padding: 18px;
+      box-shadow: var(--shadow-editorial);
+    }
+
+    .portrait-frame {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 34%, #2c161b 0%, #100d12 68%, #070608 100%);
+      border: 1px solid rgba(201, 163, 99, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-spotlight {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 35%), rgba(201, 163, 99, 0.24), transparent 58%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    #portraitImg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      z-index: 2;
+      contrast: 1.05;
+      transition: transform 0.6s ease, filter 0.4s ease;
+    }
+
+    .portrait-frame:hover #portraitImg {
+      transform: scale(1.025);
+    }
+
+    .portrait-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 4;
+      background: rgba(11, 10, 12, 0.84);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 4px 10px;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .portrait-caption {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .portrait-caption strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Полноформатные журнальные фоторазвороты pic3 и pic4 */
+    .editorial-spread {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 56px 28px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .spread-frame {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      padding: 18px;
+      box-shadow: var(--shadow-editorial);
+    }
+
+    .spread-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      overflow: hidden;
+      background: #0d0b0f;
+      border: 1px solid rgba(201, 163, 99, 0.28);
+    }
+
+    .spread-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .spread-frame:hover .spread-viewport img {
+      transform: scale(1.03);
+    }
+
+    .spread-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 10, 12, 0.65) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    .spread-tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(11, 10, 12, 0.84);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 5px 12px;
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .spread-caption {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .spread-caption strong {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-style: italic;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Общие стили разделов журнала */
+    .editorial-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 88px 28px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .roman-numeral {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 5vw, 4.8rem);
+      font-style: italic;
+      line-height: 0.85;
+      color: var(--accent-crimson);
+      padding-right: 24px;
+      border-right: 1px solid var(--border-hairline);
+    }
+
+    .section-kicker {
+      font-size: 0.74rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.3rem);
+      font-weight: 600;
+      line-height: 1.08;
+    }
+
+    /* РАЗДЕЛ I: Хронология творческого пути */
+    .era-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .era-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      padding: 12px 20px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .era-btn:hover {
+      border-color: var(--accent-gold);
+      color: var(--text-primary);
+    }
+
+    .era-btn.active {
+      background: var(--accent-crimson);
+      border-color: var(--accent-crimson);
+      color: #fff;
+    }
+
+    .era-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .era-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 34px;
+      position: relative;
+      transition: all 0.35s ease;
+    }
+
+    .era-card.hidden {
+      display: none;
+    }
+
+    .era-card.full-span {
+      grid-column: 1 / -1;
+    }
+
+    .era-years {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .era-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.95rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .era-card p {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      margin-bottom: 16px;
+    }
+
+    .era-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .era-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--accent-gold-soft);
+      color: var(--accent-gold);
+    }
+
+    /* РАЗДЕЛ II: Блок «Болеро» с фото pic2 и интерактивной схемой */
+    .bolero-lab {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      padding: 34px;
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 0.95fr 260px 1.15fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .bolero-photo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 12px;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .bolero-photo-card.phase-glow {
+      border-color: var(--accent-crimson);
+      box-shadow: 0 0 32px var(--accent-crimson-glow);
+    }
+
+    .bolero-photo-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #0b0a0c;
+      border: 1px solid rgba(201, 163, 99, 0.25);
+    }
+
+    .bolero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .bolero-photo-card:hover .bolero-photo-frame img {
+      transform: scale(1.04);
+    }
+
+    .bolero-photo-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(11, 10, 12, 0.85);
+      border: 1px solid var(--accent-crimson);
+      color: #f3ede2;
+      padding: 3px 9px;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .bolero-photo-caption {
+      margin-top: 10px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .bolero-photo-caption strong {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .bolero-stage-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bolero-stage {
+      width: 248px;
+      height: 248px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1a1518 0%, #09080a 100%);
+      border: 1px solid var(--border-hairline);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.85);
+    }
+
+    .red-table {
+      width: 98px;
+      height: 98px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e02830, #8c1117);
+      box-shadow: 0 0 30px var(--accent-crimson-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .soloist-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #f5efe6;
+      box-shadow: 0 0 14px #fff;
+      animation: soloistPulse 1.4s infinite ease-in-out;
+    }
+
+    .rhythm-ring {
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .rhythm-dancer {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.25;
+      transform: translate(-50%, -50%);
+      transition: all 0.45s ease;
+    }
+
+    .rhythm-dancer.awake {
+      background: var(--accent-gold);
+      opacity: 1;
+      box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .rhythm-dancer.ecstasy {
+      background: #ff424b;
+      box-shadow: 0 0 14px #ff424b;
+      transform: translate(-50%, -50%) scale(1.35);
+    }
+
+    @keyframes soloistPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.28); }
+    }
+
+    .bolero-controls {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .phase-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .phase-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      padding: 9px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .phase-btn.active {
+      background: var(--accent-crimson);
+      border-color: var(--accent-crimson);
+      color: #fff;
+    }
+
+    .audio-pulse-btn {
+      align-self: flex-start;
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 8px 16px;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .audio-pulse-btn.playing,
+    .audio-pulse-btn:hover {
+      background: var(--accent-gold);
+      color: #0b0a0c;
+    }
+
+    .repertoire-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      background: transparent;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .pill-btn.active,
+    .pill-btn:hover {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold-soft);
+      color: var(--text-primary);
+    }
+
+    .search-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      padding: 9px 16px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      min-width: 260px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-gold);
+    }
+
+    .ballets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ballet-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .ballet-card:hover {
+      border-color: var(--accent-crimson);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-editorial);
+    }
+
+    .ballet-year {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent-crimson);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .ballet-title {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .ballet-music {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 14px;
+    }
+
+    .ballet-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .ballet-more {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 12px;
+    }
+
+    /* РАЗДЕЛ III: Хореографический метод Бежара */
+    .method-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .method-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .method-tab {
+      text-align: left;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .method-tab .tab-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .method-tab .tab-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text-primary);
+    }
+
+    .method-tab.active {
+      background: var(--bg-card);
+      border-color: var(--accent-crimson);
+      border-left: 4px solid var(--accent-crimson);
+    }
+
+    .method-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 38px;
+    }
+
+    .method-panel h3 {
+      font-family: var(--font-display);
+      font-size: 2.15rem;
+      margin-bottom: 14px;
+    }
+
+    .method-intro {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .method-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .method-point {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 22px;
+    }
+
+    .method-point h4 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    .method-point p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .geometry-box {
+      margin-top: 32px;
+      padding: 26px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .geo-canvas {
+      width: 220px;
+      height: 160px;
+      background: #0b0a0c;
+      border: 1px solid var(--border-hairline);
+      display: block;
+    }
+
+    .geo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .geo-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      padding: 7px 14px;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .geo-btn.active {
+      background: var(--accent-gold);
+      color: #0b0a0c;
+      border-color: var(--accent-gold);
+      font-weight: 700;
+    }
+
+    /* РАЗДЕЛ IV: Архивные факты из биографии */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .fact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 28px 30px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: border-color 0.3s ease;
+    }
+
+    .fact-card:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .fact-index {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--accent-gold);
+      line-height: 1;
+      min-width: 38px;
+    }
+
+    .fact-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.48rem;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .fact-content p {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+    }
+
+    .editorial-pullquote {
+      max-width: 960px;
+      margin: 76px auto 0;
+      text-align: center;
+      padding: 42px 32px;
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .editorial-pullquote blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 3vw, 2.4rem);
+      font-style: italic;
+      line-height: 1.32;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .editorial-pullquote cite {
+      font-style: normal;
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+    }
+
+    /* Модальное окно театральной программки */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 5, 8, 0.84);
+      backdrop-filter: blur(8px);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .playbill-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--accent-gold);
+      max-width: 660px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8);
+      animation: modalFade 0.28s ease;
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: transparent;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      width: 34px;
+      height: 34px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .playbill-kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-crimson);
+      margin-bottom: 8px;
+    }
+
+    .playbill-title {
+      font-family: var(--font-display);
+      font-size: 2.35rem;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .playbill-meta {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .playbill-body {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .magazine-footer {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 42px 28px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1120px) {
+      .bolero-lab {
+        grid-template-columns: 1fr 1fr;
+      }
+      .bolero-lab > div:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .cover-grid,
+      .method-layout {
+        grid-template-columns: 1fr;
+      }
+      .ballets-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .portrait-plate {
+        max-width: 460px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .bolero-lab,
+      .era-grid,
+      .ballets-grid,
+      .method-points,
+      .facts-grid,
+      .cover-toc,
+      .geometry-box {
+        grid-template-columns: 1fr;
+      }
+      .spread-viewport {
+        aspect-ratio: 16 / 10;
+      }
+      .header-inner,
+      .cover-spread,
+      .editorial-spread,
+      .editorial-section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+
+    /* Журнальная врезка под точный размер pic3 (378×300 px) */
+    .archival-inset {
+      display: grid;
+      grid-template-columns: 378px 1fr;
+      gap: 36px;
+      align-items: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-hairline);
+      padding: 24px;
+      box-shadow: var(--shadow-editorial);
+    }
+
+    .archival-inset-frame {
+      position: relative;
+      width: 378px;
+      height: 300px;
+      overflow: hidden;
+      border: 1px solid rgba(201, 163, 99, 0.32);
+      background: #0d0b0f;
+    }
+
+    .archival-inset-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .archival-inset {
+        grid-template-columns: 1fr;
+      }
+      .archival-inset-frame {
+        width: 100%;
+        max-width: 378px;
+        height: auto;
+        aspect-ratio: 378 / 300;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Журнальный колонтитул -->
+  <header class="magazine-header">
+    <div class="header-inner">
+      <a href="#cover" class="brand-mark">
+        <span class="brand-title">Revue Chorégraphique</span>
+        <span class="brand-sub">Специальный выпуск • XX век</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#biography">I. Творческий путь</a></li>
+        <li><a href="#repertoire">II. Шедевры и Болеро</a></li>
+        <li><a href="#method">III. Метод Бежара</a></li>
+        <li><a href="#facts">IV. Факты и архив</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" title="Переключить бумагу журнала">
+        <span id="themeIcon">◐</span>
+        <span id="themeLabel">Пергамент</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- СТАРТОВАЯ СТРАНИЦА / ОБЛОЖКА ЖУРНАЛА С ПОРТРЕТОМ pic1 -->
+  <section class="cover-spread" id="cover">
+    <div class="cover-meta-bar">
+      <span>Издание об искусстве танца • Монографический номер</span>
+      <span>Марсель — Париж — Брюссель — Лозанна</span>
+      <span>1927 — 2007</span>
+    </div>
+
+    <div class="cover-grid">
+      <div>
+        <div class="issue-kicker">Портрет эпохи • Революционер сцены</div>
+        <h1 class="cover-headline">
+          Морис Бежар
+          <em>Архитектор тотального театра</em>
+        </h1>
+        <div class="cover-dates">
+          Морис-Жан Берже • 1 января 1927, Марсель — 22 ноября 2007, Лозанна
+        </div>
+        <p class="cover-lead">
+          Один из крупнейших хореографов, танцовщиков, театральных и оперных режиссёров XX века. Он совершил революцию в академическом танце, выведя балет из элитарных оперных залов на стадионы и площади, утвердив доминирующую роль мужского танца и создав концепцию «тотального театра», где хореография на равных соединяется с музыкой, драмой, пантомимой, литературой и философией.
+        </p>
+
+        <nav class="cover-toc" aria-label="Содержание выпуска">
+          <a href="#biography" class="toc-item">
+            <span class="toc-num">I.</span>
+            <span class="toc-label">Творческий путь и вехи</span>
+          </a>
+          <a href="#repertoire" class="toc-item">
+            <span class="toc-num">II.</span>
+            <span class="toc-label">11 знаковых шедевров</span>
+          </a>
+          <a href="#method" class="toc-item">
+            <span class="toc-num">III.</span>
+            <span class="toc-label">Хореографический метод</span>
+          </a>
+          <a href="#facts" class="toc-item">
+            <span class="toc-num">IV.</span>
+            <span class="toc-label">Факты из биографии</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Портрет Мориса Бежара (pic1) -->
+      <figure class="portrait-plate" id="portraitPlate">
+        <div class="portrait-frame" id="portraitFrame">
+          <span class="portrait-badge">Планшет I • Портрет</span>
+          <div class="portrait-spotlight" id="portraitSpotlight"></div>
+          <img id="portraitImg" data-base="pic1" alt="Портрет Мориса Бежара" />
+        </div>
+
+        <figcaption class="portrait-caption">
+          <div>
+            <strong>Морис Бежар (1927–2007)</strong><br />
+            <span>Основатель «Балета XX века» и «Балета Бежара в Лозанне»</span>
+          </div>
+          <span style="letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-gold);">Архив • № 01</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- РАЗДЕЛ I: ТВОРЧЕСКИЙ ПУТЬ И ОСНОВНЫЕ ВЕХИ -->
+  <section class="editorial-section" id="biography">
+    <div class="section-header">
+      <div class="roman-numeral">I</div>
+      <div>
+        <span class="section-kicker">Хроника становления • 1927–2007</span>
+        <h2 class="section-title">Творческий путь и основные вехи</h2>
+      </div>
+    </div>
+
+    <div class="era-controls" role="tablist" aria-label="Периоды биографии">
+      <button class="era-btn active" data-era="all">Все периоды (полный разворот)</button>
+      <button class="era-btn" data-era="origins">1927–1952 • Истоки и русская школа</button>
+      <button class="era-btn" data-era="paris">1953–1959 • Парижские эксперименты</button>
+      <button class="era-btn" data-era="brussels">1960–1987 • «Балет XX века»</button>
+      <button class="era-btn" data-era="lausanne">1987–2007 • Лозанна и наследие</button>
+    </div>
+
+    <div class="era-grid" id="eraGrid">
+      <article class="era-card" data-era-card="origins">
+        <span class="era-years">1927 — 1952</span>
+        <h3>Становление и русская школа</h3>
+        <p>
+          Морис родился в семье известного французского философа и педагога Гастона Берже. В возрасте семи лет он потерял мать, а в подростковом возрасте (в 13–14 лет), будучи болезненным ребёнком, начал заниматься балетом по совету врача. Решающим импульсом стала увиденная им постановка Сержа Лифаря.
+        </p>
+        <p>
+          Дебютировав на сцене в 1946 году в Виши, молодой танцовщик перебрался в Париж, где получил фундаментальную классическую базу у выдающихся педагогов русской эмиграции — Ольги Преображенской, Любови Егоровой, Веры Волковой и мадам Рузанн. Позднее он выступал в труппах Ролана Пети, Жанин Шарра и Шведском королевском балете под руководством Биргит Кульберг, где в начале 1950-х осуществил свои первые хореографические опыты.
+        </p>
+        <div class="era-tags">
+          <span class="era-tag">Гастон Берже</span>
+          <span class="era-tag">Серж Лифарь</span>
+          <span class="era-tag">Ольга Преображенская</span>
+          <span class="era-tag">Вера Волкова</span>
+          <span class="era-tag">Ролан Пети</span>
+        </div>
+      </article>
+
+      <article class="era-card" data-era-card="paris">
+        <span class="era-years">1953 — 1959</span>
+        <h3>Парижские эксперименты</h3>
+        <p>
+          В 1953–1954 годах Бежар основал в Париже свою первую труппу («Романтические балеты», вскоре переименованную в <em>Ballet de l'Étoile</em> — «Балет Звезды»), а в 1957 году создал «Балетный театр Парижа». В этот период он сам танцевал ведущие партии и искал радикально новый пластический язык.
+        </p>
+        <p>
+          Настоящим манифестом стала постановка <strong>«Симфония для одинокого человека» (1955)</strong> на конкретную музыку Пьера Анри и Пьера Шеффера: впервые в истории балета танцовщики двигались под индустриальные шумы, стук шагов, дыхание и скрипы без традиционного оркестра.
+        </p>
+        <div class="era-tags">
+          <span class="era-tag">Ballet de l'Étoile</span>
+          <span class="era-tag">Конкретная музыка</span>
+          <span class="era-tag">Пьер Анри</span>
+          <span class="era-tag">Пьер Шеффер</span>
+        </div>
+      </article>
+
+      <article class="era-card" data-era-card="brussels">
+        <span class="era-years">1960 — 1987</span>
+        <h3>Эпоха «Балета XX века» в Брюсселе</h3>
+        <p>
+          В 1959 году директор брюссельского Королевского театра «Ла Монне» Морис Юисман пригласил Бежара поставить «Весну священную» Игоря Стравинского. Оглушительный успех спектакля привёл к созданию в 1960 году легендарной труппы <strong>«Балет XX века»</strong> (<em>Ballet du XXe Siècle</em>). За 27 лет существования в Брюсселе коллектив стал главным центром притяжения современной хореографии, объединив вокруг Бежара звёзд мировой сцены (включая его главного танцовщика и музу Хорхе Донна).
+        </p>
+        <p>
+          В 1970 году при труппе открылась знаменитая экспериментальная школа-студия <strong>«Мудра»</strong> (позднее её филиал появился в Дакаре), где будущих артистов обучали не только классическому и современному танцу, но и актёрскому мастерству, пению, ритмике и боевым искусствам.
+        </p>
+        <div class="era-tags">
+          <span class="era-tag">Театр «Ла Монне»</span>
+          <span class="era-tag">Ballet du XXe Siècle</span>
+          <span class="era-tag">Хорхе Донн</span>
+          <span class="era-tag">Школа «Мудра»</span>
+        </div>
+      </article>
+
+      <article class="era-card" data-era-card="lausanne">
+        <span class="era-years">1987 — 2007</span>
+        <h3>Лозаннский период и наследие</h3>
+        <p>
+          Из-за разногласий с новым руководством театра «Ла Монне» в 1987 году Бежар перевёз труппу в Швейцарию, основав <strong>«Балет Бежара в Лозанне»</strong> (<em>Béjart Ballet Lausanne</em>), а в 1992 году открыл там школу-студию <strong>«Рудра»</strong>.
+        </p>
+        <p>
+          Несмотря на тяжёлую болезнь в последние годы жизни, хореограф продолжал ставить спектакли вплоть до 2007 года, перемещаясь по репетиционному залу в кресле-каталке. После его смерти руководство труппой перешло к его многолетнему ведущему солисту Жилю Роману.
+        </p>
+        <div class="era-tags">
+          <span class="era-tag">Béjart Ballet Lausanne</span>
+          <span class="era-tag">Школа «Рудра»</span>
+          <span class="era-tag">Жиль Роман</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ЖУРНАЛЬНАЯ АРХИВНАЯ ВРЕЗКА С pic3 (378×300) -->
+  <section class="editorial-spread" aria-label="Фоторазворот: Сценический масштаб">
+    <div class="archival-inset">
+      <figure class="archival-inset-frame">
+        <img data-base="pic3" alt="Постановки Мориса Бежара" />
+        <span class="spread-tag">Планшет III</span>
+      </figure>
+      <div>
+        <span class="section-kicker">Архивный кадр • Сценический масштаб</span>
+        <h3 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.15; margin-bottom: 14px;">
+          От камерной оперной сцены к стадионам и площадям
+        </h3>
+        <p style="color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 14px;">
+          Бежар вывел хореографию за пределы классической театральной коробки, превратив пространство сцены в сакральную арену, где пластика и световой луч читаются даже с дальних трибун.
+        </p>
+        <span style="font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-gold);">
+          Архивный фотоматериал к монографии Мориса Бежара
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- РАЗДЕЛ II: ЗНАКОВЫЕ БАЛЕТЫ И ШЕДЕВРЫ + БЛОК «БОЛЕРО» С pic2 -->
+  <section class="editorial-section" id="repertoire">
+    <div class="section-header">
+      <div class="roman-numeral">II</div>
+      <div>
+        <span class="section-kicker">Более 100 постановок • Избранный каталог</span>
+        <h2 class="section-title">Знаковые балеты и шедевры</h2>
+      </div>
+    </div>
+
+    <!-- Блок «Болеро» с фотографией pic2 и интерактивной схемой -->
+    <div class="bolero-lab">
+      <figure class="bolero-photo-card" id="boleroPhotoCard">
+        <div class="bolero-photo-frame">
+          <img data-base="pic2" alt="Балет «Болеро» Мориса Бежара" />
+          <span class="bolero-photo-badge">Планшет II • «Болеро»</span>
+        </div>
+        <figcaption class="bolero-photo-caption">
+          <strong>«Болеро» (1961, муз. М. Равеля)</strong><br />
+          <span>Мелодия и Ритм: гипнотическое нарастание на круглом красном столе</span>
+        </figcaption>
+      </figure>
+
+      <div class="bolero-stage-wrap">
+        <div class="bolero-stage" id="boleroStage">
+          <div class="rhythm-ring" id="rhythmRing"></div>
+          <div class="red-table" id="redTable">
+            <div class="soloist-dot" title="Солист (Мелодия)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-kicker">Интерактивная партитура • 1961</span>
+        <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px;">
+          «Болеро»: анатомия гипнотического крещендо
+        </h3>
+        <p id="boleroPhaseDesc" style="color: var(--text-secondary); font-size: 0.96rem;">
+          <strong>Фаза 1 (Экспозиция):</strong> Солист (Мелодия) находится на круглом красном столе. Окружающие его артисты (Ритм) неподвижны — энергия накапливается внутри минималистичного жеста.
+        </p>
+
+        <div class="bolero-controls">
+          <div class="phase-buttons">
+            <button class="phase-btn active" data-phase="1">I. Соло на столе</button>
+            <button class="phase-btn" data-phase="2">II. Первые импульсы</button>
+            <button class="phase-btn" data-phase="3">III. Заражение групп</button>
+            <button class="phase-btn" data-phase="4">IV. Экстаз Tutti</button>
+          </div>
+          <button class="audio-pulse-btn" id="audioPulseBtn">▶ Включить ритмический пульс</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Фильтр и поиск по балетам -->
+    <div class="repertoire-toolbar">
+      <div class="filter-pills">
+        <button class="pill-btn active" data-decade="all">Все 11 балетов</button>
+        <button class="pill-btn" data-decade="1950">1950-е</button>
+        <button class="pill-btn" data-decade="1960">1960-е</button>
+        <button class="pill-btn" data-decade="1970">1970-е</button>
+        <button class="pill-btn" data-decade="1990">1990-е</button>
+      </div>
+      <input type="search" class="search-input" id="balletSearch" placeholder="Поиск: Плисецкая, Равель, Queen, Донн..." />
+    </div>
+
+    <div class="ballets-grid" id="balletsGrid"></div>
+  </section>
+
+  <!-- РАЗДЕЛ III: ХОРЕОГРАФИЧЕСКИЙ МЕТОД МОРИСА БЕЖАРА -->
+  <section class="editorial-section" id="method">
+    <div class="section-header">
+      <div class="roman-numeral">III</div>
+      <div>
+        <span class="section-kicker">Эстетика и пластическая система</span>
+        <h2 class="section-title">Хореографический метод Мориса Бежара</h2>
+      </div>
+    </div>
+
+    <p style="max-width: 78ch; color: var(--text-secondary); font-size: 1.03rem; margin-bottom: 36px;">
+      Хореографический метод Мориса Бежара строится на парадоксальном соединении строгой академической выучки с первобытным ритуалом, восточной философией и эстетикой уличного, стадионного зрелища. Для хореографов наследие Бежара — это эталонный учебник по тому, как превратить чистое движение в философское высказывание, не прибегая к бытовой пантомиме.
+    </p>
+
+    <div class="method-layout">
+      <div class="method-tabs" role="tablist">
+        <button class="method-tab active" data-method="0">
+          <span class="tab-num">Раздел 01</span>
+          <span class="tab-name">Пластический лексикон и механика тела</span>
+        </button>
+        <button class="method-tab" data-method="1">
+          <span class="tab-num">Раздел 02</span>
+          <span class="tab-name">Архитектоника пространства и работа с массой</span>
+        </button>
+        <button class="method-tab" data-method="2">
+          <span class="tab-num">Раздел 03</span>
+          <span class="tab-name">Музыкальность и звуковая драматургия</span>
+        </button>
+        <button class="method-tab" data-method="3">
+          <span class="tab-num">Раздел 04</span>
+          <span class="tab-name">Актёрская природа и театр архетипов</span>
+        </button>
+      </div>
+
+      <div class="method-panel" id="methodPanel"></div>
+    </div>
+  </section>
+
+  <!-- ЖУРНАЛЬНЫЙ ФОТОРАЗВОРОТ С pic4 -->
+  <section class="editorial-spread" aria-label="Фоторазворот: Тотальный театр">
+    <figure class="spread-frame">
+      <div class="spread-viewport">
+        <img data-base="pic4" alt="Хореография и театр Мориса Бежара" />
+        <div class="spread-overlay"></div>
+        <span class="spread-tag">Планшет IV • Тотальный театр</span>
+      </div>
+      <figcaption class="spread-caption">
+        <strong>Синтез пластики, ритуала, музыки и философского жеста</strong>
+        <span>Из хронико-документального архива «Балета XX века»</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- РАЗДЕЛ IV: ИНТЕРЕСНЫЕ ФАКТЫ ИЗ БИОГРАФИИ -->
+  <section class="editorial-section" id="facts" style="border-bottom: none;">
+    <div class="section-header">
+      <div class="roman-numeral">IV</div>
+      <div>
+        <span class="section-kicker">Биографическое досье</span>
+        <h2 class="section-title">Интересные факты из биографии</h2>
+      </div>
+    </div>
+
+    <div class="facts-grid" id="factsGrid"></div>
+
+    <div class="editorial-pullquote">
+      <blockquote>
+        «Балет — это не украшение вечера и не салонная игра; это ритуал, в котором тело говорит о вечном яснее любых слов».
+      </blockquote>
+      <cite>Эстетическое кредо «Тотального театра» • Морис Бежар</cite>
+    </div>
+  </section>
+
+  <footer class="magazine-footer">
+    <span>Revue Chorégraphique • Монография: Морис Бежар (1927–2007)</span>
+    <span>Интерактивное журнальное издание</span>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО ТЕАТРАЛЬНОЙ ПРОГРАММКИ -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
+    <div class="playbill-modal">
+      <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+      <div class="playbill-kicker" id="modalKicker">Театральная программка</div>
+      <h3 class="playbill-title" id="modalTitle"></h3>
+      <div class="playbill-meta" id="modalMeta"></div>
+      <p class="playbill-body" id="modalBody"></p>
+    </div>
+  </div>
+
+  <script>
+    // АВТОМАТИЧЕСКАЯ ПОДСТАНОВКА ФОРМАТА ДЛЯ pic1, pic2, pic3, pic4 (.jpg / .png / .webp / .jpeg)
+    document.querySelectorAll("img[data-base]").forEach((img) => {
+      const base = img.getAttribute("data-base");
+      const exts = ["jpg", "png", "webp", "jpeg", "JPG", "PNG", "WEBP", "JPEG"];
+      let idx = 0;
+      img.src = `${base}.${exts[idx]}`;
+      img.onerror = () => {
+        idx++;
+        if (idx < exts.length) {
+          img.src = `${base}.${exts[idx]}`;
+        }
+      };
+    });
+
+    // ДАННЫЕ БАЛЕТОВ
+    const BALLETS_DATA = [
+      {
+        year: "1955",
+        decade: "1950",
+        title: "«Симфония для одинокого человека»",
+        music: "П. Анри, П. Шеффер",
+        description: "Революционный балет без мелодии — под «конкретную музыку» (шумы, вздохи, шаги) о тотальном одиночестве человека в урбанистическом мире.",
+        note: "Премьера в Париже стала эстетическим манифестом молодого Бежара: отказ от симфонического оркестра в пользу индустриальных и телесных звуков."
+      },
+      {
+        year: "1959",
+        decade: "1950",
+        title: "«Весна священная»",
+        music: "И. Стравинский",
+        description: "Отказ от этнографической стилизации. Ритуал пробуждения природы как первобытное, мощное столкновение мужского и женского начал.",
+        note: "Поставлена в брюссельском театре «Ла Монне» по приглашению Мориса Юисмана; триумф спектакля положил начало труппе «Балет XX века»."
+      },
+      {
+        year: "1961",
+        decade: "1960",
+        title: "«Болеро»",
+        music: "М. Равель",
+        description: "Визитная карточка Бежара. Солист (Мелодия) танцует на огромном круглом красном столе, постепенно гипнотизируя окружающих его артистов (Ритм). Партию Мелодии исполняли как женщины (Душка Сифниос, Майя Плисецкая), так и мужчины (Хорхе Донн).",
+        note: "Эталон бежаровского принципа «хореографического заражения» и сценографии одного сакрального арт-объекта."
+      },
+      {
+        year: "1964",
+        decade: "1960",
+        title: "«Девятая симфония»",
+        music: "Л. ван Бетховен",
+        description: "Грандиозный спектакль-манифест о братстве народов, впервые поставленный на спортивной арене (Цирк Рояль в Брюсселе) с участием хора и оркестра.",
+        note: "Масштабное воплощение идеи выхода балета из камерных театров на многотысячные арены."
+      },
+      {
+        year: "1966",
+        decade: "1960",
+        title: "«Ромео и Юлия»",
+        music: "Г. Берлиоз",
+        description: "Прочтение трагедии Шекспира как вечного конфликта любви и войны; дуэт из балета неоднократно исполняли Екатерина Максимова и Владимир Васильев.",
+        note: "Драматическая симфония Берлиоза переосмыслена как антивоенный призыв эпохи 1960-х."
+      },
+      {
+        year: "1967",
+        decade: "1960",
+        title: "«Месса по настоящему времени»",
+        music: "П. Анри и традиционная музыка",
+        description: "Знаковый спектакль эпохи контркультуры, созданный для Авиньонского фестиваля как философское размышление о мире, войне и духовном поиске.",
+        note: "Синтез электронной конкретной музыки Пьера Анри, духовных текстов и ритуальной пластики."
+      },
+      {
+        year: "1968",
+        decade: "1960",
+        title: "«Бхакти»",
+        music: "Индийская народная музыка",
+        description: "Синтез европейской хореографической техники и восточной философии, основанный на индуистских мифах о любви божеств.",
+        note: "Обращение к скульптурным жестам кистей и сакральной символике Востока."
+      },
+      {
+        year: "1971",
+        decade: "1970",
+        title: "«Песни странствующего подмастерья»",
+        music: "Г. Малер",
+        description: "Камерный философский дуэт для двух мужчин, изначально созданный для Рудольфа Нуреева и Паоло Бортолуцци.",
+        note: "Одно из высших достижений Бежара в утверждении драматической и лирической глубины мужского танца."
+      },
+      {
+        year: "1972",
+        decade: "1970",
+        title: "«Нижинский — клоун Божий»",
+        music: "П. Чайковский, П. Анри",
+        description: "Масштабная биографическая фантазия о трагической судьбе Вацлава Нижинского, разрывающегося между гением, любовью и безумием.",
+        note: "Образец «тотального театра», где классическая музыка Чайковского вступает в диалог с электроникой Пьера Анри."
+      },
+      {
+        year: "1976",
+        decade: "1970",
+        title: "«Айседора»",
+        music: "Разные композиторы",
+        description: "Моноспектакль-портрет Айседоры Дункан, созданный специально для Майи Плисецкой.",
+        note: "Диалог двух великих реформаторов танца XX века, воплощённый легендарной балериной."
+      },
+      {
+        year: "1997",
+        decade: "1990",
+        title: "«Дом священника... Балет для жизни»",
+        music: "В. А. Моцарт, группа Queen",
+        description: "Гимн молодости и памяти ушедших раньше времени — посвящён Фредди Меркьюри и Хорхе Донну (скончавшимся от СПИДа). Костюмы создал Джанни Версаче.",
+        note: "Яркий пример монтажного полистилизма: моцартовская чистота соединяется с рок-энергией Queen."
+      }
+    ];
+
+    const METHOD_DATA = [
+      {
+        title: "1. Пластический лексикон и механика тела",
+        intro: "Бежар никогда не отрицал классический танец, но лишил его романтической «невесомости» и салонной декоративности, вернув телу вес, плоть и связь с землёй.",
+        points: [
+          {
+            heading: "«Заземление» академической базы (Grounding)",
+            text: "В лексике Бежара сохраняются выворотность, натянутый подъём, высокий шаг и классический aplomb, но центр тяжести смещён вниз (влияние африканского танца и модернизма). Плие становится глубоким, вязким и пружинящим — танцовщик не «отталкивается» от пола в небо, а «впечатывает» энергию в сцену."
+          },
+          {
+            heading: "Полицентрия и освобождение корпуса",
+            text: "При строгих, почти академических ногах верхняя часть тела у Бежара живёт по законам современной пластики: активная работа грудной клетки, резкие импульсы от солнечного сплетения и таза, скручивания позвоночника и асимметрия плечевого пояса."
+          },
+          {
+            heading: "Скульптурный жест и «говорящие» руки",
+            text: "Под влиянием индийского классического театра (катхакали, бхаратанатьям) и школы пантомимы Марселя Марсо кисть руки перестала быть декоративным завершением пор-де-бра. У Бежара рука — главный смысловой акцент: резкие «рубящие» жесты, разведённые пальцы, фиксация рук в жёстких геометрических ракурсах и стоп-кадрах."
+          },
+          {
+            heading: "Переосмысление гендерной пластики",
+            text: "Бежар разрушил амплуа «принца-аккомпанемента». Мужской танец в его постановках сочетает мощную, почти спортивную прыжковую атаку с кошачьей гибкостью корпуса, а женской хореографии он нередко придавал жёсткую, воинственную, «угловатую» силу."
+          }
+        ],
+        hasGeometry: false
+      },
+      {
+        title: "2. Архитектоника пространства и работа с массой",
+        intro: "Бежар мыслил сценой не как коробкой с кулисами, а как сакральной ареной или храмом, где каждый геометрический рисунок несёт символическую нагрузку.",
+        points: [
+          {
+            heading: "Сакральная геометрия",
+            text: "Вместо привычных симметричных построений кордебалета Бежар выстраивал мизансцены по архетипическим схемам: Круг — символ солнца, цикличности жизни, магического ритуала и общности («Весна священная», «Болеро»); Крест — символ пересечения судеб, выбора и трагического разлома; Прострельная диагональ — вектор прорыва, конфликта и движения истории."
+          },
+          {
+            heading: "Принцип «хореографического заражения» (Крещендо)",
+            text: "Визитная карточка Бежара в работе с массой. Солист задаёт минималистичный, почти гипнотический пластический мотив (покачивание таза, разворот кисти, шаг на месте), который многократно повторяется с постепенным усложнением. Кордебалет сначала существует как статичный фон или пульсирующий метроном, а затем волнообразно, группа за группой, «заражается» этим движением, доводя камерный импульс до коллективного экстаза."
+          },
+          {
+            heading: "Сценография одного арт-объекта",
+            text: "Отказываясь от живописных декораций в пользу «чёрного кабинета» и жёсткого светового луча, Бежар помещал в центр сцены один крупный предмет-метафору (огромный красный стол в «Болеро», круг земли в «Весне священной», лестницы, канат, зеркала). Этот объект задаёт всю физику движения и ограничивает либо организует траектории артистов."
+          }
+        ],
+        hasGeometry: true
+      },
+      {
+        title: "3. Музыкальность и звуковая драматургия",
+        intro: "В школах «Мудра» и «Рудра» ритмика и сольфеджио стояли на одном уровне с классическим экзерсисом. Бежар требовал от танцовщиков не «танцевать под музыку», а становиться её визуальным продолжением.",
+        points: [
+          {
+            heading: "Контрапункт вместо иллюстрации",
+            text: "Если музыкальное полотно тягучее и кантиленное, хореографический текст может строиться на дробных, синкопированных, ударных акцентах — и наоборот. Движение вступает в диалог с партитурой, а не дублирует её мелодическую линию."
+          },
+          {
+            heading: "Работа с немузыкальной средой",
+            text: "Начиная с «Симфонии для одинокого человека» (1955), Бежар ввёл в хореографию «конкретную музыку» и внемузыкальные звуки: стук шагов, тяжёлое дыхание артистов, хлопки, удары тела об пол, крик, художественное чтение текста и тишину как самостоятельный драматургический акцент."
+          },
+          {
+            heading: "Монтажный полистилизм",
+            text: "Бежар одним из первых начал смело монтировать внутри одного спектакля академическую классику (Моцарт, Малер, Бетховен), этнические ударные, электронику и рок-музыку (Queen, Pink Floyd). Связующим звеном для него всегда выступал не исторический стиль, а единый эмоциональный нерв и ритмический пульс."
+          }
+        ],
+        hasGeometry: false
+      },
+      {
+        title: "4. Актёрская природа и театр архетипов",
+        intro: "Бежар отрицал бытовую психологическую актёрскую игру в танце. Его артист играет не конкретный характер со своей биографией, а идею, стихию или миф (Эрос, Танатос, Одиночество, Бунт, Жертва).",
+        points: [
+          {
+            heading: "Синтетический исполнитель",
+            text: "В педагогической системе Бежара танцовщик обязан владеть голосом, речью, элементами боевых искусств и актёрской импровизацией, чтобы в нужный момент перейти от пируэта к монологу или вокальной фразе без смены внутренней органики."
+          },
+          {
+            heading: "Слом «четвёртой стены»",
+            text: "Вынося спектакли на стадионы и площади, Бежар выработал особую технику посыла: взгляд артиста направлен не в условную точку над зрительным залом, а прямо в глаза публике; амплитуда жеста рассчитывается на восприятие с дальних трибун."
+          }
+        ],
+        hasGeometry: false
+      }
+    ];
+
+    const FACTS_DATA = [
+      {
+        title: "Сценический псевдоним в честь Мольера",
+        text: "Фамилию Бежар хореограф взял в честь Арманды Бежар — актрисы и жены драматурга Мольера, которого Морис считал своим главным театральным эталоном. В 1976 году он посвятил драматургу спектакль «Мнимый Мольер» для театра «Комеди Франсэз»."
+      },
+      {
+        title: "Многонациональные корни",
+        text: "По отцовской линии у Бежара были корни из турецкого Курдистана и Сенегала, а его мать была каталонкой. Сам балетмейстер подчёркивал, что именно это смешение кровей определило его страсть к синтезу европейских, африканских и восточных культур в танце."
+      },
+      {
+        title: "Отчество «Иванович» в СССР и запрет в Большом",
+        text: "Во время триумфальных гастролей «Балета XX века» в Москве летом 1978 года советские зрители и артисты в знак высочайшего уважения стали называть хореографа Морисом Ивановичем — до него подобной чести в России удостаивался только Мариус Петипа. Министр культуры СССР Пётр Демичев днём дал согласие на постановку Бежара в Большом театре, но вечером того же дня, после ошеломительного приёма спектаклей публикой, контракт отменили с формулировкой первого замминистра Юрия Барабаша: «Бежар может отрицательно повлиять на традиции русского балета»."
+      },
+      {
+        title: "Принятие ислама",
+        text: "В 1973 году, после глубокого увлечения персидской культурой, суфийской поэзией и работы над спектаклем «Голестан» в Иране, Бежар принял ислам шиитского толка."
+      },
+      {
+        title: "Дружба с Джанни Версаче",
+        text: "Итальянский кутюрье был близким другом и постоянным соавтором Бежара, создав костюмы более чем для десяти его балетов. В 1997 году, вскоре после премьеры «Дома священника» в Лозанне, Версаче был застрелен в Майами. Десять лет спустя, незадолго до собственной смерти, Бежар посвятил ему один из своих последних балетов — «Спасибо, Джанни, с любовью» (2007)."
+      },
+      {
+        title: "Творческий тандем с Майей Плисецкой",
+        text: "Бежар испытывал особое восхищение перед Плисецкой и поставил специально для неё целый ряд работ: помимо «Айседоры» (1976), это дуэт «Леда» (1978), балет «Куразука» (1995) и номер «Ave Майя!» (2000) на её 75-летие."
+      },
+      {
+        title: "Режиссура в кино и опере",
+        text: "Помимо балета, Бежар ставил оперы (включая «Травиату», «Дон Жуана», «Саломею»), снял несколько художественных и документальных фильмов как кинорежиссёр («Я родился в Венеции», 1975), а также поставил хореографию для знаменитого фильма Клода Лелуша «Одни и другие» (1981), где кульминацией стал танец Хорхе Донна под «Болеро» у подножия Эйфелевой башни."
+      },
+      {
+        title: "Литературный дар",
+        text: "Унаследовав от отца-философа склонность к рефлексии, Бежар написал несколько книг воспоминаний и эссе о природе танца, самые известные из которых — мемуары «Мгновение в жизни другого» и «В чьей жизни?»."
+      }
+    ];
+
+    // ПРОГРЕСС ЧТЕНИЯ И ПОДСВЕТКА НАВИГАЦИИ
+    const readingProgress = document.getElementById("readingProgress");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("section[id]");
+
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      readingProgress.style.width = `${pct}%`;
+
+      let currentId = "";
+      sections.forEach((sec) => {
+        if (scrollTop >= sec.offsetTop - 160) {
+          currentId = sec.getAttribute("id");
+        }
+      });
+
+      navAnchors.forEach((a) => {
+        a.classList.toggle("active", a.getAttribute("href") === `#${currentId}`);
+      });
+    });
+
+    // ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
+    const themeToggle = document.getElementById("themeToggle");
+    const themeLabel = document.getElementById("themeLabel");
+    themeToggle.addEventListener("click", () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute("data-theme") === "dark";
+      html.setAttribute("data-theme", isDark ? "paper" : "dark");
+      themeLabel.textContent = isDark ? "Сцена" : "Пергамент";
+    });
+
+    // СВЕТОВОЙ ЛУЧ НА ПОРТРЕТЕ pic1
+    const portraitFrame = document.getElementById("portraitFrame");
+    const portraitSpotlight = document.getElementById("portraitSpotlight");
+    portraitFrame.addEventListener("mousemove", (e) => {
+      const rect = portraitFrame.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      portraitSpotlight.style.setProperty("--mx", `${x}%`);
+      portraitSpotlight.style.setProperty("--my", `${y}%`);
+    });
+
+    // ФИЛЬТРАЦИЯ ПЕРИОДОВ БИОГРАФИИ
+    const eraBtns = document.querySelectorAll(".era-btn");
+    const eraCards = document.querySelectorAll(".era-card");
+
+    eraBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        eraBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const selected = btn.dataset.era;
+
+        eraCards.forEach((card) => {
+          if (selected === "all") {
+            card.classList.remove("hidden", "full-span");
+          } else if (card.dataset.eraCard === selected) {
+            card.classList.remove("hidden");
+            card.classList.add("full-span");
+          } else {
+            card.classList.add("hidden");
+            card.classList.remove("full-span");
+          }
+        });
+      });
+    });
+
+    // ИНТЕРАКТИВНЫЙ БЛОК «БОЛЕРО» + ПОДСВЕТКА pic2
+    const rhythmRing = document.getElementById("rhythmRing");
+    const redTable = document.getElementById("redTable");
+    const boleroPhotoCard = document.getElementById("boleroPhotoCard");
+    const boleroPhaseDesc = document.getElementById("boleroPhaseDesc");
+    const phaseBtns = document.querySelectorAll(".phase-btn");
+    const TOTAL_DANCERS = 16;
+
+    for (let i = 0; i < TOTAL_DANCERS; i++) {
+      const angle = (i / TOTAL_DANCERS) * Math.PI * 2 - Math.PI / 2;
+      const radius = 98;
+      const x = 112 + Math.cos(angle) * radius;
+      const y = 112 + Math.sin(angle) * radius;
+      const dot = document.createElement("span");
+      dot.className = "rhythm-dancer";
+      dot.style.left = `${x}px`;
+      dot.style.top = `${y}px`;
+      rhythmRing.appendChild(dot);
+    }
+
+    const dancerDots = document.querySelectorAll(".rhythm-dancer");
+    const PHASE_TEXTS = {
+      1: "<strong>Фаза 1 (Экспозиция):</strong> Солист (Мелодия) находится на круглом красном столе. Окружающие его артисты (Ритм) неподвижны — энергия накапливается внутри минималистичного жеста.",
+      2: "<strong>Фаза 2 (Первые импульсы):</strong> Вступают первые группы Ритма. Едва заметные покачивания головы и плеч подхватывают остинатный пульс малого барабана.",
+      3: "<strong>Фаза 3 (Хореографическое заражение):</strong> Волна движения захватывает почти весь ансамбль вокруг стола; амплитуда пластики нарастает без смены темпа.",
+      4: "<strong>Фаза 4 (Коллективный экстаз Tutti):</strong> Граница между центром и периферией стирается — весь кордебалет в едином ритуальном унисоне окружает красный стол."
+    };
+
+    let currentBoleroPhase = 1;
+
+    function updateBoleroPhase(phase) {
+      currentBoleroPhase = phase;
+      boleroPhaseDesc.innerHTML = PHASE_TEXTS[phase];
+
+      dancerDots.forEach((dot, idx) => {
+        dot.classList.remove("awake", "ecstasy");
+        if (phase === 2 && idx % 4 === 0) dot.classList.add("awake");
+        if (phase === 3 && idx % 4 !== 3) dot.classList.add("awake");
+        if (phase === 4) {
+          dot.classList.add("awake", "ecstasy");
+        }
+      });
+
+      boleroPhotoCard.classList.toggle("phase-glow", phase >= 3);
+      const scale = 1 + (phase - 1) * 0.04;
+      redTable.style.transform = `scale(${scale})`;
+    }
+
+    phaseBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        phaseBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        updateBoleroPhase(Number(btn.dataset.phase));
+      });
+    });
+
+    // Ритмический пульс Болеро (Web Audio API)
+    const audioPulseBtn = document.getElementById("audioPulseBtn");
+    let audioCtx = null;
+    let pulseTimer = null;
+    let beatStep = 0;
+
+    function triggerSnarePulse() {
+      if (!audioCtx) return;
+      const pattern = [1, 0.35, 0.35, 0.35, 0.85, 0.35, 0.35, 0.35, 0.9, 0.7, 0.35, 0.35];
+      const accent = pattern[beatStep % pattern.length];
+      beatStep++;
+
+      const bufferSize = audioCtx.sampleRate * 0.06;
+      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+      }
+
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = "bandpass";
+      filter.frequency.value = 1100;
+
+      const gain = audioCtx.createGain();
+      const phaseGain = 0.04 + currentBoleroPhase * 0.035;
+      gain.gain.value = accent * phaseGain;
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+      noise.start();
+    }
+
+    audioPulseBtn.addEventListener("click", () => {
+      if (pulseTimer) {
+        clearInterval(pulseTimer);
+        pulseTimer = null;
+        audioPulseBtn.classList.remove("playing");
+        audioPulseBtn.textContent = "▶ Включить ритмический пульс";
+        return;
+      }
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      beatStep = 0;
+      triggerSnarePulse();
+      pulseTimer = setInterval(triggerSnarePulse, 260);
+      audioPulseBtn.classList.add("playing");
+      audioPulseBtn.textContent = "■ Остановить ритмический пульс";
+    });
+
+    // КАТАЛОГ ЗНАКОВЫХ БАЛЕТОВ
+    const balletsGrid = document.getElementById("balletsGrid");
+    const pillBtns = document.querySelectorAll(".pill-btn");
+    const balletSearch = document.getElementById("balletSearch");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalClose = document.getElementById("modalClose");
+
+    let activeDecade = "all";
+    let searchQuery = "";
+
+    function renderBallets() {
+      const filtered = BALLETS_DATA.filter((item) => {
+        const matchesDecade = activeDecade === "all" || item.decade === activeDecade;
+        const q = searchQuery.trim().toLowerCase();
+        const matchesText =
+          !q ||
+          item.title.toLowerCase().includes(q) ||
+          item.music.toLowerCase().includes(q) ||
+          item.description.toLowerCase().includes(q) ||
+          item.year.includes(q);
+        return matchesDecade && matchesText;
+      });
+
+      balletsGrid.innerHTML = filtered
+        .map(
+          (b) => `
+          <article class="ballet-card" data-ballet-index="${BALLETS_DATA.indexOf(b)}">
+            <div>
+              <div class="ballet-year">${b.year}</div>
+              <h3 class="ballet-title">${b.title}</h3>
+              <div class="ballet-music">Музыка: ${b.music}</div>
+              <p class="ballet-desc">${b.description}</p>
+            </div>
+            <span class="ballet-more">Открыть программку спектакля →</span>
+          </article>
+        `
+        )
+        .join("");
+
+      document.querySelectorAll(".ballet-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const item = BALLETS_DATA[Number(card.dataset.balletIndex)];
+          document.getElementById("modalKicker").textContent = `Архив постановок • Премьера ${item.year} года`;
+          document.getElementById("modalTitle").textContent = item.title;
+          document.getElementById("modalMeta").textContent = `Музыкальная партитура: ${item.music}`;
+          document.getElementById("modalBody").innerHTML = `
+            <p style="margin-bottom: 14px;">${item.description}</p>
+            <p style="color: var(--accent-gold); font-style: italic;">${item.note}</p>
+          `;
+          modalBackdrop.classList.add("open");
+        });
+      });
+    }
+
+    pillBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        pillBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeDecade = btn.dataset.decade;
+        renderBallets();
+      });
+    });
+
+    balletSearch.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderBallets();
+    });
+
+    modalClose.addEventListener("click", () => modalBackdrop.classList.remove("open"));
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) modalBackdrop.classList.remove("open");
+    });
+
+    renderBallets();
+
+    // ХОРЕОГРАФИЧЕСКИЙ МЕТОД + ИНТЕРАКТИВНАЯ САКРАЛЬНАЯ ГЕОМЕТРИЯ
+    const methodTabs = document.querySelectorAll(".method-tab");
+    const methodPanel = document.getElementById("methodPanel");
+
+    function renderMethod(index) {
+      const m = METHOD_DATA[index];
+      let geometryHtml = "";
+
+      if (m.hasGeometry) {
+        geometryHtml = `
+          <div class="geometry-box">
+            <svg class="geo-canvas" id="geoSvg" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div>
+              <div class="geo-buttons">
+                <button class="geo-btn active" data-shape="circle">Круг (Ритуал)</button>
+                <button class="geo-btn" data-shape="cross">Крест (Разлом)</button>
+                <button class="geo-btn" data-shape="diagonal">Диагональ (Прорыв)</button>
+              </div>
+              <p id="geoCaption" style="font-size: 0.9rem; color: var(--text-secondary);">
+                <strong>Круг:</strong> символ солнца, цикличности жизни, магического ритуала и общности («Весна священная», «Болеро»).
+              </p>
+            </div>
+          </div>
+        `;
+      }
+
+      methodPanel.innerHTML = `
+        <h3>${m.title}</h3>
+        <p class="method-intro">${m.intro}</p>
+        <div class="method-points">
+          ${m.points
+            .map(
+              (pt) => `
+              <div class="method-point">
+                <h4>${pt.heading}</h4>
+                <p>${pt.text}</p>
+              </div>
+            `
+            )
+            .join("")}
+        </div>
+        ${geometryHtml}
+      `;
+
+      if (m.hasGeometry) {
+        initGeometryVisualizer();
+      }
+    }
+
+    function initGeometryVisualizer() {
+      const geoSvg = document.getElementById("geoSvg");
+      const geoCaption = document.getElementById("geoCaption");
+      const geoBtns = document.querySelectorAll(".geo-btn");
+
+      const SHAPES = {
+        circle: {
+          caption: "<strong>Круг:</strong> символ солнца, цикличности жизни, магического ритуала и общности («Весна священная», «Болеро»).",
+          svg: `
+            <circle cx="110" cy="80" r="54" fill="none" stroke="#c9a363" stroke-dasharray="4 4" />
+            <circle cx="110" cy="80" r="10" fill="#b81d24" />
+            ${Array.from({ length: 12 })
+              .map((_, i) => {
+                const a = (i / 12) * Math.PI * 2;
+                return `<circle cx="${110 + Math.cos(a) * 54}" cy="${80 + Math.sin(a) * 54}" r="4.5" fill="#f3ede2" />`;
+              })
+              .join("")}
+          `
+        },
+        cross: {
+          caption: "<strong>Крест:</strong> символ пересечения судеб, выбора и трагического разлома.",
+          svg: `
+            <line x1="110" y1="16" x2="110" y2="144" stroke="#c9a363" stroke-dasharray="4 4" />
+            <line x1="36" y1="80" x2="184" y2="80" stroke="#c9a363" stroke-dasharray="4 4" />
+            <circle cx="110" cy="80" r="9" fill="#b81d24" />
+            ${[28, 54, 106, 132]
+              .map((y) => `<circle cx="110" cy="${y}" r="4.5" fill="#f3ede2" />`)
+              .join("")}
+            ${[50, 80, 140, 170]
+              .map((x) => `<circle cx="${x}" cy="80" r="4.5" fill="#f3ede2" />`)
+              .join("")}
+          `
+        },
+        diagonal: {
+          caption: "<strong>Прострельная диагональ:</strong> вектор прорыва, конфликта и движения истории.",
+          svg: `
+            <line x1="26" y1="138" x2="194" y2="22" stroke="#b81d24" stroke-width="2" />
+            <polygon points="194,22 182,24 188,33" fill="#b81d24" />
+            ${[0, 1, 2, 3, 4, 5, 6]
+              .map((i) => {
+                const t = i / 6;
+                const x = 34 + t * 146;
+                const y = 132 - t * 102;
+                return `<circle cx="${x}" cy="${y}" r="${i === 6 ? 7 : 4.5}" fill="${i === 6 ? "#b81d24" : "#f3ede2"}" />`;
+              })
+              .join("")}
+          `
+        }
+      };
+
+      function drawShape(key) {
+        geoSvg.innerHTML = SHAPES[key].svg;
+        geoCaption.innerHTML = SHAPES[key].caption;
+      }
+
+      geoBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          geoBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          drawShape(btn.dataset.shape);
+        });
+      });
+
+      drawShape("circle");
+    }
+
+    methodTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        methodTabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        renderMethod(Number(tab.dataset.method));
+      });
+    });
+
+    renderMethod(0);
+
+    // ИНТЕРЕСНЫЕ ФАКТЫ ИЗ БИОГРАФИИ
+    const factsGrid = document.getElementById("factsGrid");
+    factsGrid.innerHTML = FACTS_DATA.map(
+      (f, i) => `
+      <article class="fact-card">
+        <div class="fact-index">0${i + 1}</div>
+        <div class="fact-content">
+          <h3>${f.title}</h3>
+          <p>${f.text}</p>
+        </div>
+      </article>
+    `
+    ).join("");
+  </script>
+</body>
+</html>
