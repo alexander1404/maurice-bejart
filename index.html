@@ -613,7 +613,7 @@
       color: var(--accent-gold);
     }
 
-    /* РАЗДЕЛ II: Блок «Болеро» с фото pic2 и интерактивной схемой */
+    /* РАЗДЕЛ II: Блок «Болеро» с фото pic2, интерактивной схемой и аудиоплеером */
     .bolero-lab {
       background: var(--bg-secondary);
       border: 1px solid var(--border-hairline);
@@ -793,23 +793,166 @@
       color: #fff;
     }
 
-    .audio-pulse-btn {
-      align-self: flex-start;
-      background: transparent;
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
-      padding: 8px 16px;
-      font-size: 0.74rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    /* Аудиоплеер в блоке «Болеро» */
+    .bolero-player {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.3s ease;
+    }
+
+    .bolero-player.is-playing {
+      border-color: var(--accent-gold);
+    }
+
+    .player-top-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .player-play-btn {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      background: var(--accent-crimson);
+      border: 1px solid var(--accent-crimson);
+      color: #fff;
+      font-size: 0.9rem;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.25s ease;
     }
 
-    .audio-pulse-btn.playing,
-    .audio-pulse-btn:hover {
+    .player-play-btn:hover {
       background: var(--accent-gold);
+      border-color: var(--accent-gold);
       color: #0b0a0c;
+    }
+
+    .player-track-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .player-track-title {
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-progress-wrap {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .player-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-crimson), var(--accent-gold));
+      transition: width 0.1s linear;
+    }
+
+    .player-time {
+      font-size: 0.72rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    .player-volume-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .player-mute-btn {
+      background: transparent;
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      width: 28px;
+      height: 26px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.25s ease;
+    }
+
+    .player-mute-btn:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .volume-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .volume-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      border: 1px solid #0b0a0c;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .volume-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      background: var(--accent-crimson);
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      border: 1px solid #0b0a0c;
+      cursor: pointer;
+    }
+
+    .volume-value {
+      font-size: 0.72rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-secondary);
+      min-width: 34px;
+      text-align: right;
     }
 
     .repertoire-toolbar {
@@ -1378,7 +1521,7 @@
       <!-- Портрет Мориса Бежара (pic1) -->
       <figure class="portrait-plate" id="portraitPlate">
         <div class="portrait-frame" id="portraitFrame">
-          <span class="portrait-badge">Планшет I • Портрет</span>
+          <span class="portrait-badge"></span>
           <div class="portrait-spotlight" id="portraitSpotlight"></div>
           <img id="portraitImg" data-base="pic1" alt="Портрет Мориса Бежара" />
         </div>
@@ -1488,7 +1631,7 @@
     <div class="archival-inset">
       <figure class="archival-inset-frame">
         <img data-base="pic3" alt="Постановки Мориса Бежара" />
-        <span class="spread-tag">Планшет III</span>
+        <span class="spread-tag"></span>
       </figure>
       <div>
         <span class="section-kicker">Архивный кадр • Сценический масштаб</span>
@@ -1505,7 +1648,7 @@
     </div>
   </section>
 
-  <!-- РАЗДЕЛ II: ЗНАКОВЫЕ БАЛЕТЫ И ШЕДЕВРЫ + БЛОК «БОЛЕРО» С pic2 -->
+  <!-- РАЗДЕЛ II: ЗНАКОВЫЕ БАЛЕТЫ И ШЕДЕВРЫ + БЛОК «БОЛЕРО» С pic2 И ПЛЕЕРОМ music -->
   <section class="editorial-section" id="repertoire">
     <div class="section-header">
       <div class="roman-numeral">II</div>
@@ -1515,12 +1658,12 @@
       </div>
     </div>
 
-    <!-- Блок «Болеро» с фотографией pic2 и интерактивной схемой -->
+    <!-- Блок «Болеро» с фотографией pic2, интерактивной схемой и аудиоплеером -->
     <div class="bolero-lab">
       <figure class="bolero-photo-card" id="boleroPhotoCard">
         <div class="bolero-photo-frame">
           <img data-base="pic2" alt="Балет «Болеро» Мориса Бежара" />
-          <span class="bolero-photo-badge">Планшет II • «Болеро»</span>
+          <span class="bolero-photo-badge">• «Болеро»</span>
         </div>
         <figcaption class="bolero-photo-caption">
           <strong>«Болеро» (1961, муз. М. Равеля)</strong><br />
@@ -1553,7 +1696,27 @@
             <button class="phase-btn" data-phase="3">III. Заражение групп</button>
             <button class="phase-btn" data-phase="4">IV. Экстаз Tutti</button>
           </div>
-          <button class="audio-pulse-btn" id="audioPulseBtn">▶ Включить ритмический пульс</button>
+
+          <!-- Аудиоплеер с регулировкой громкости для файла music -->
+          <div class="bolero-player" id="boleroPlayer">
+            <audio id="boleroAudio" preload="metadata"></audio>
+            <div class="player-top-row">
+              <button type="button" class="player-play-btn" id="playerPlayBtn" aria-label="Воспроизвести или пауза">▶</button>
+              <div class="player-track-info">
+                <span class="player-track-title">М. Равель — «Болеро»</span>
+                <div class="player-progress-wrap" id="playerProgressWrap" title="Перемотать">
+                  <div class="player-progress-bar" id="playerProgressBar"></div>
+                </div>
+              </div>
+              <span class="player-time" id="playerTime">00:00 / 00:00</span>
+            </div>
+            <div class="player-volume-row">
+              <button type="button" class="player-mute-btn" id="playerMuteBtn" title="Включить или выключить звук">🔊</button>
+              <span class="volume-label">Громкость</span>
+              <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" aria-label="Регулировка громкости" />
+              <span class="volume-value" id="volumeValue">80%</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1584,7 +1747,7 @@
     </div>
 
     <p style="max-width: 78ch; color: var(--text-secondary); font-size: 1.03rem; margin-bottom: 36px;">
-      Хореографический метод Мориса Бежара строится на парадоксальном соединении строгой академической выучки с первобытным ритуалом, восточной философией и эстетикой уличного, стадионного зрелища. Для хореографов наследие Бежара — это эталонный учебник по тому, как превратить чистое движение в философское высказывание, не прибегая к бытовой пантомиме.
+      Хореографический метод Мориса Бежара строится на парадоксальном соединении строгой академической выучки с первобытным ритуалом, восточной философией и эстетикой уличного, стадионного зрелища. Для студентов-хореографов наследие Бежара — это эталонный учебник по тому, как превратить чистое движение в философское высказывание, не прибегая к бытовой пантомиме.
     </p>
 
     <div class="method-layout">
@@ -1617,7 +1780,7 @@
       <div class="spread-viewport">
         <img data-base="pic4" alt="Хореография и театр Мориса Бежара" />
         <div class="spread-overlay"></div>
-        <span class="spread-tag">Планшет IV • Тотальный театр</span>
+        <span class="spread-tag"></span>
       </div>
       <figcaption class="spread-caption">
         <strong>Синтез пластики, ритуала, музыки и философского жеста</strong>
@@ -1675,6 +1838,19 @@
           img.src = `${base}.${exts[idx]}`;
         }
       };
+    });
+
+    // АВТОМАТИЧЕСКАЯ ПОДСТАНОВКА ФОРМАТА ДЛЯ АУДИОФАЙЛА music (.mp3 / .ogg / .wav / .m4a)
+    const boleroAudio = document.getElementById("boleroAudio");
+    const audioExts = ["mp3", "ogg", "wav", "m4a", "MP3", "OGG", "WAV", "M4A"];
+    let audioExtIdx = 0;
+    boleroAudio.src = `music.${audioExts[audioExtIdx]}`;
+    boleroAudio.volume = 0.8;
+    boleroAudio.addEventListener("error", () => {
+      audioExtIdx++;
+      if (audioExtIdx < audioExts.length) {
+        boleroAudio.src = `music.${audioExts[audioExtIdx]}`;
+      }
     });
 
     // ДАННЫЕ БАЛЕТОВ
@@ -1951,7 +2127,7 @@
       });
     });
 
-    // ИНТЕРАКТИВНЫЙ БЛОК «БОЛЕРО» + ПОДСВЕТКА pic2
+    // ИНТЕРАКТИВНЫЙ БЛОК «БОЛЕРО» + ПОДСВЕТКА pic2 + АУДИОПЛЕЕР music
     const rhythmRing = document.getElementById("rhythmRing");
     const redTable = document.getElementById("redTable");
     const boleroPhotoCard = document.getElementById("boleroPhotoCard");
@@ -1979,10 +2155,7 @@
       4: "<strong>Фаза 4 (Коллективный экстаз Tutti):</strong> Граница между центром и периферией стирается — весь кордебалет в едином ритуальном унисоне окружает красный стол."
     };
 
-    let currentBoleroPhase = 1;
-
     function updateBoleroPhase(phase) {
-      currentBoleroPhase = phase;
       boleroPhaseDesc.innerHTML = PHASE_TEXTS[phase];
 
       dancerDots.forEach((dot, idx) => {
@@ -2007,59 +2180,94 @@
       });
     });
 
-    // Ритмический пульс Болеро (Web Audio API)
-    const audioPulseBtn = document.getElementById("audioPulseBtn");
-    let audioCtx = null;
-    let pulseTimer = null;
-    let beatStep = 0;
+    // Управление аудиоплеером (воспроизведение, перемотка, громкость)
+    const boleroPlayer = document.getElementById("boleroPlayer");
+    const playerPlayBtn = document.getElementById("playerPlayBtn");
+    const playerProgressWrap = document.getElementById("playerProgressWrap");
+    const playerProgressBar = document.getElementById("playerProgressBar");
+    const playerTime = document.getElementById("playerTime");
+    const playerMuteBtn = document.getElementById("playerMuteBtn");
+    const volumeSlider = document.getElementById("volumeSlider");
+    const volumeValue = document.getElementById("volumeValue");
 
-    function triggerSnarePulse() {
-      if (!audioCtx) return;
-      const pattern = [1, 0.35, 0.35, 0.35, 0.85, 0.35, 0.35, 0.35, 0.9, 0.7, 0.35, 0.35];
-      const accent = pattern[beatStep % pattern.length];
-      beatStep++;
-
-      const bufferSize = audioCtx.sampleRate * 0.06;
-      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
-      }
-
-      const noise = audioCtx.createBufferSource();
-      noise.buffer = buffer;
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = "bandpass";
-      filter.frequency.value = 1100;
-
-      const gain = audioCtx.createGain();
-      const phaseGain = 0.04 + currentBoleroPhase * 0.035;
-      gain.gain.value = accent * phaseGain;
-
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(audioCtx.destination);
-      noise.start();
+    function formatTime(sec) {
+      if (!Number.isFinite(sec) || sec < 0) return "00:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
     }
 
-    audioPulseBtn.addEventListener("click", () => {
-      if (pulseTimer) {
-        clearInterval(pulseTimer);
-        pulseTimer = null;
-        audioPulseBtn.classList.remove("playing");
-        audioPulseBtn.textContent = "▶ Включить ритмический пульс";
-        return;
+    function updateVolumeUI() {
+      const vol = boleroAudio.muted ? 0 : boleroAudio.volume;
+      volumeValue.textContent = `${Math.round(vol * 100)}%`;
+      if (vol === 0) {
+        playerMuteBtn.textContent = "🔇";
+      } else if (vol < 0.5) {
+        playerMuteBtn.textContent = "🔉";
+      } else {
+        playerMuteBtn.textContent = "🔊";
       }
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    playerPlayBtn.addEventListener("click", () => {
+      if (boleroAudio.paused) {
+        boleroAudio.play();
+      } else {
+        boleroAudio.pause();
       }
-      if (audioCtx.state === "suspended") audioCtx.resume();
-      beatStep = 0;
-      triggerSnarePulse();
-      pulseTimer = setInterval(triggerSnarePulse, 260);
-      audioPulseBtn.classList.add("playing");
-      audioPulseBtn.textContent = "■ Остановить ритмический пульс";
+    });
+
+    boleroAudio.addEventListener("play", () => {
+      playerPlayBtn.textContent = "❚❚";
+      boleroPlayer.classList.add("is-playing");
+    });
+
+    boleroAudio.addEventListener("pause", () => {
+      playerPlayBtn.textContent = "▶";
+      boleroPlayer.classList.remove("is-playing");
+    });
+
+    boleroAudio.addEventListener("ended", () => {
+      playerPlayBtn.textContent = "▶";
+      boleroPlayer.classList.remove("is-playing");
+      playerProgressBar.style.width = "0%";
+    });
+
+    boleroAudio.addEventListener("loadedmetadata", () => {
+      playerTime.textContent = `00:00 / ${formatTime(boleroAudio.duration)}`;
+    });
+
+    boleroAudio.addEventListener("timeupdate", () => {
+      const pct = boleroAudio.duration ? (boleroAudio.currentTime / boleroAudio.duration) * 100 : 0;
+      playerProgressBar.style.width = `${pct}%`;
+      playerTime.textContent = `${formatTime(boleroAudio.currentTime)} / ${formatTime(boleroAudio.duration)}`;
+    });
+
+    playerProgressWrap.addEventListener("click", (e) => {
+      if (!boleroAudio.duration) return;
+      const rect = playerProgressWrap.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      boleroAudio.currentTime = ratio * boleroAudio.duration;
+    });
+
+    volumeSlider.addEventListener("input", (e) => {
+      const val = parseFloat(e.target.value);
+      boleroAudio.volume = val;
+      boleroAudio.muted = val === 0;
+      updateVolumeUI();
+    });
+
+    playerMuteBtn.addEventListener("click", () => {
+      boleroAudio.muted = !boleroAudio.muted;
+      if (!boleroAudio.muted && boleroAudio.volume === 0) {
+        boleroAudio.volume = 0.5;
+        volumeSlider.value = "0.5";
+      } else if (boleroAudio.muted) {
+        volumeSlider.value = "0";
+      } else {
+        volumeSlider.value = String(boleroAudio.volume);
+      }
+      updateVolumeUI();
     });
 
     // КАТАЛОГ ЗНАКОВЫХ БАЛЕТОВ
